@@ -1,7 +1,7 @@
 // compute boundaries =====================================
 export const computeBoundaries = ({ columns, types }) => {
-  let min
-  let max
+  let min: number | null= null
+  let max: number | null = null
   
   columns.forEach(column => {
      if (types[column[0]] !== 'line') {
@@ -11,12 +11,12 @@ export const computeBoundaries = ({ columns, types }) => {
      if (typeof min !== 'number') min = column[1]
      if (typeof max !== 'number') max = column[1]
 
-     if (min > column[1]) min = column[1]
-     if (max < column[1]) max = column[1]
+     if (min && min > column[1]) min = column[1]
+     if (max && max < column[1]) max = column[1]
 
      for ( let i = 2; i < column.length; i++ ) {
-      if (min > column[i]) min = column[i]
-      if (max < column[i]) max = column[i]
+      if (min && min > column[i]) min = column[i]
+      if (max && max < column[i]) max = column[i]
     }
   });
   return [min, max]

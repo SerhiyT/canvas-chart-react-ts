@@ -38,6 +38,10 @@ body {
     width: 25px;
     border-radius: 50%;
     background-color: #7a5195;
+    background-image: url("../img/sunny.png");
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 4px 3px;
 
     img {
       margin-top: 2px;
@@ -45,6 +49,9 @@ body {
       height: 18px;
       width: 18px;
     }
+  } 
+  :focus {
+    outline: none;
   }
 }
 
@@ -64,7 +71,7 @@ body {
     border-radius: 5px;
     border: 1px solid #dfe6eb;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
-    background: rgba(78, 77, 77, 0.4);
+    background: rgba(78, 77, 77, 0.9);
     color: #9cb09e;
     overflow: hidden;
     z-index: 3;
@@ -102,3 +109,19 @@ body {
   }
 }
 
+.white-mode {
+  background-color: #FFFAFA;
+    button {
+      background-color: #7a5195;
+      background-image: url("../img/moon.png");
+      background-repeat: no-repeat;
+      background-size: 18px 18px;
+      background-position: 3px 3px;
+    }
+
+    .chart-tooltip {
+      border: 1px solid #dfe6eb;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 254, 254, 0.9);
+    } 
+}
