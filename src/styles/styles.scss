@@ -1,0 +1,104 @@
+@mixin clear-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #666;
+  font-family: Helvetica;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 5rem auto;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: #2e2e2e;
+  padding: 1rem;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+
+  button {
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    right: 0;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #7a5195;
+
+    img {
+      margin-top: 2px;
+      margin-left: 2px;
+      height: 18px;
+      width: 18px;
+    }
+  }
+}
+
+.chart {
+  position: relative;
+
+  > canvas {
+    z-index: 2;
+  }
+
+  .chart-tooltip {
+    position: absolute;
+    display: none;
+    max-width: 200px;
+    min-width: 120px;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #dfe6eb;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+    background: rgba(78, 77, 77, 0.4);
+    color: #9cb09e;
+    overflow: hidden;
+    z-index: 3;
+
+    top: 50px;
+    left: 0px;
+
+    .tooltip-title {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .tooltip-list {
+      display: flex;
+      flex-wrap: wrap;
+      @include clear-list;
+    }
+
+    .tooltip-list-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: 1;
+
+      .name {
+        font-size: 0.8rem;
+      }
+
+      .value {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
