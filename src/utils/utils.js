@@ -1,7 +1,7 @@
 // compute boundaries =====================================
 export const computeBoundaries = ({ columns, types }) => {
-  let min: number | null= null
-  let max: number | null = null
+  let min = null
+  let max = null
   
   columns.forEach(column => {
      if (types[column[0]] !== 'line') {
@@ -38,7 +38,7 @@ export const drawChartLine = (ctx, coords, { color }) => {
   ctx.lineWidth = 4
   ctx.strokeStyle = color
   
-  coords.forEach(element => {
+  coords.forEach((element) => {
     const x = element[0]
     const y = element[1]
 
