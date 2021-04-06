@@ -7,8 +7,7 @@ import {
 } from './utils/const';
 import { tooltip } from './Tooltip';
 
-export const chart = (root, arrData) => {
-  console.log('%cqqq:', 'color: green;', root);
+const chart = (root, arrData) => {
   const canvas = root.querySelector('canvas');
   const ctx = canvas.getContext('2d');
   const tip = tooltip(root.querySelector('[data-el="tooltip"]'));
@@ -31,8 +30,8 @@ export const chart = (root, arrData) => {
     const [yMin, yMax] = computeBoundaries(arrData);
     const yRatio = VIEW_HEIGHT / (yMax - yMin);
     const xRatio = VIEW_WIDTH / (arrData.columns[0].length - 2);
-    const yData = arrData.columns.filter((column) => arrData.types[column[0]] === 'line');
-    const xData = arrData.columns.filter((column) => arrData.types[column[0]] !== 'line')[0];
+    const yData = arrData.columns.filter(column => arrData.types[column[0]] === 'line');
+    const xData = arrData.columns.filter(column => arrData.types[column[0]] !== 'line')[0];
 
     yAxis(yMax, yMin);
     xAxis(xData, yData, xRatio);
@@ -53,7 +52,7 @@ export const chart = (root, arrData) => {
   };
 
   //* closure / =============================================
-  const toCoords = (xRatio, yRatio) => (column) => column
+  const toCoords = (xRatio, yRatio) => column => column
     .map((y, i) => [
       Math.floor((i - 1) * xRatio),
       Math.floor(DPI_HEIGHT - PADDING - y * yRatio),
@@ -100,8 +99,8 @@ export const chart = (root, arrData) => {
     for (let i = 1; i <= xData.length; i++) {
       const x = i * xRatio;
       if ((i - 1) % scaleStep === 0) {
-        const textScale_X = toShortDate(xData[i]);
-        ctx.fillText(textScale_X, x, DPI_HEIGHT);
+        const textScaleX = toShortDate(xData[i]);
+        ctx.fillText(textScaleX, x, DPI_HEIGHT);
       }
 
       // == draw vertical line on chart by mouseOver ==
@@ -110,12 +109,11 @@ export const chart = (root, arrData) => {
         ctx.moveTo(x, PADDING);
         ctx.lineTo(x, DPI_HEIGHT - PADDING);
         ctx.restore();
-        console.log('OVER');
 
         // ===== tooltip =====
         tip.show(proxy.mouse.tooltip, {
           title: toShortDate(xData[i]),
-          items: yData.map((column) => ({
+          items: yData.map(column => ({
             color: arrData.colors[column[0]],
             name: arrData.names[column[0]],
             value: column[i + 1],
@@ -140,9 +138,9 @@ export const chart = (root, arrData) => {
 
     for (let i = 1; i <= ROWS_COUNT; i++) {
       const y = scaleStep * i;
-      const textScale_Y = Math.round(yMax - textStep * i);
+      const textScaleY = Math.round(yMax - textStep * i);
 
-      ctx.fillText(textScale_Y, 0, y + PADDING - 5);
+      ctx.fillText(textScaleY, 0, y + PADDING - 5);
       ctx.moveTo(0, y + PADDING);
       ctx.lineTo(DPI_WIDTH, y + PADDING);
     }
@@ -161,3 +159,5 @@ export const chart = (root, arrData) => {
     },
   };
 };
+
+export default chart;

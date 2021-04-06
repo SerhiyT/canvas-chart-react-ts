@@ -13,7 +13,7 @@ const template = data => `
 `;
 
 export const tooltip = el => {
-  const clear = () => el.innerHTML = '';
+  const clear = () => { el.innerHTML = ''; };
 
   return {
     show({ left, top }, data) {
@@ -41,3 +41,5 @@ export const tooltip = el => {
     },
   };
 };
+
+export default tooltip;

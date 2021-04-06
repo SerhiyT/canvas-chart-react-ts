@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./styles/styles.scss";
-import { chart } from "./Chart";
-import { getChartData } from "./utils/data";
+import React, { useEffect, useState } from 'react';
+import chart from './Chart';
+import './styles/styles.scss';
+
+import getChartData from './utils/data';
 
 const Canvas = () => {
   const [
@@ -12,7 +13,7 @@ const Canvas = () => {
   useEffect(
     () => {
       const showChart = chart(
-        document.getElementById("chart"),
+        document.getElementById('chart'),
         getChartData(),
       );
       showChart?.init();
@@ -22,12 +23,11 @@ const Canvas = () => {
 
   return (
     <div className="container">
-
-      <div className={`card ${whiteMode && "white-mode"}`}>
-        <div className={`chart ${whiteMode && "white-mode"}`} id="chart">
+      <div className={`card ${whiteMode && 'white-mode'}`}>
+        <div className={`chart ${whiteMode && 'white-mode'}`} id="chart">
           <div data-el="tooltip" className="chart-tooltip" />
           <button
-            className={`${whiteMode && "white-mode"}`}
+            className={`${whiteMode && 'white-mode'}`}
             id="theme-btn"
             onClick={() => setWhiteMode(!whiteMode)}
           />
