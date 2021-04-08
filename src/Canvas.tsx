@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import chart from './Chart';
 import './styles/styles.scss';
-
+import chart from './Chart';
 import getChartData from './utils/data';
 
 const Canvas = () => {
-  const [
-    whiteMode,
-    setWhiteMode,
-  ] = useState(false);
+  const [whiteMode, setWhiteMode] = useState(false);
 
-  useEffect(
-    () => {
-      const showChart = chart(
-        document.getElementById('chart'),
-        getChartData(),
-      );
-      showChart?.init();
-    },
-    [],
-  );
+  useEffect(() => {
+    const showChart = chart(document.getElementById('chart'), getChartData());
+    showChart?.init();
+  }, []);
 
   return (
     <div className="container">
