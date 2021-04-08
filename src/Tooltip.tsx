@@ -1,6 +1,18 @@
 import { css } from './utils/utils';
 
-const template = data => `
+interface DataTypes {
+  items: {
+    color: string
+    name: string
+    value: number
+  }[]
+  title: string
+}
+type tooltipCoords = {
+  left: number
+  top: number
+}
+const template = (data: DataTypes) => `
   <div class="tooltip-title">${data.title}</div>
   <ul class="tooltip-list">
     ${data.items
@@ -12,11 +24,11 @@ const template = data => `
   </ul>
 `;
 
-export const tooltip = el => {
+export const tooltip = (el: HTMLElement) => {
   const clear = () => { el.innerHTML = ''; };
 
   return {
-    show({ left, top }, data) {
+    show({ left, top }: tooltipCoords, data: DataTypes) {
       const { height, width } = el.getBoundingClientRect();
       clear();
       css(

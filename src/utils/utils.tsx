@@ -1,7 +1,17 @@
+interface ComputeBoundariesTypes {
+  columns: (string | number)[][]
+  types: {
+    y0: string
+    y1: string
+    y2: string
+    x: string
+  }
+}
+
 // compute boundaries =====================================
-export const computeBoundaries = ({ columns, types }) => {
-  let min = null;
-  let max = null;
+export const computeBoundaries = ({ columns, types }: ComputeBoundariesTypes) => {
+  let min: null | number | string = null;
+  let max: null | number | string = null;
 
   columns.forEach(column => {
     if (types[column[0]] !== 'line') {
@@ -23,7 +33,7 @@ export const computeBoundaries = ({ columns, types }) => {
 };
 
 // ==== check mouse coordinate ============================
-export const isOver = (mouse, x, length, dpiWidth) => {
+export const isOver = (mouse: any, x: number, length: number, dpiWidth: number) => {
   if (!mouse) {
     return false;
   }
@@ -33,7 +43,11 @@ export const isOver = (mouse, x, length, dpiWidth) => {
 };
 
 // ==== draw chart line ===================================
-export const drawChartLine = (ctx, coords, { color }) => {
+type colorType = { color: string }
+export const drawChartLine = (
+  ctx: CanvasRenderingContext2D,
+  coords: [], { color }: colorType,
+) => {
   ctx.beginPath();
   ctx.lineWidth = 4;
   ctx.strokeStyle = color;
@@ -49,7 +63,11 @@ export const drawChartLine = (ctx, coords, { color }) => {
 };
 
 // ==== draw point ========================================
-export const drawPoint = (ctx, [x, y], color) => {
+export const drawPoint = (
+  ctx: CanvasRenderingContext2D,
+  [x, y]: number[],
+  color: colorType & CanvasPattern,
+) => {
   const POINT_RADIUS = 7;
 
   ctx.beginPath();
@@ -62,7 +80,7 @@ export const drawPoint = (ctx, [x, y], color) => {
 };
 
 // ==== to short date ====================================
-export const toShortDate = timestamp => {
+export const toShortDate = (timestamp: number) => {
   const date = new Date(timestamp);
   const shortMounth = [
     'Jan',
@@ -82,6 +100,6 @@ export const toShortDate = timestamp => {
 };
 
 // ========================================================
-export const css = (el, styles = {}) => {
+export const css = (el: HTMLElement, styles = {}) => {
   Object.assign(el.style, styles);
 };
